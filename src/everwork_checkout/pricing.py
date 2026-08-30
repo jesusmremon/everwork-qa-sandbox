@@ -29,8 +29,7 @@ def calculate_total(subtotal_cents: int, *, coupon: Coupon | None, today: date) 
 
     if subtotal_cents < 0:
         raise ValueError("subtotal_cents cannot be negative")
-    if coupon is None or today > coupon.expires_on:
+    if coupon is None:
         return subtotal_cents
     discount_cents = subtotal_cents * coupon.percent_off // 100
     return subtotal_cents - discount_cents
-
